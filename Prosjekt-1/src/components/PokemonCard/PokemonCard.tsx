@@ -13,7 +13,7 @@ export function PokemonCard({
   isFavorite,
   imgURL,
 }: PokemonCardProps) {
-  const imgAltText = name + "-sprite";
+  const imgAltText = name + " sprite";
 
   const pokemonSprite = (
     <img className="pokemonSprite" src={imgURL} alt={imgAltText} />
