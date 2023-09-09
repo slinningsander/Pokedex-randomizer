@@ -5,8 +5,8 @@ import "./componentTestPage.css";
 export function ComponentTestPage() {
   return (
     <>
-      <div className="pageWrapper">
-        <div className="componentContainer"></div>
+      <div className="page">
+          <div className="componentContainer"></div>
       </div>
     </>
   );
