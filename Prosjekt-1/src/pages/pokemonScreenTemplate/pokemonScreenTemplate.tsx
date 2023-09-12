@@ -9,7 +9,9 @@ type PokemonScreenTemplateProps = {
     moves: string[];
 };
 
-const PokemonScreenTemplate = ({ name, type, height, weight, abilities, moves }: PokemonScreenTemplateProps) => {
+const PokemonScreenTemplate = ({ name, type, height, weight, abilities }: PokemonScreenTemplateProps) => {
+
+    const pokemonName = sessionStorage.getItem("pokemonName");
 
     return (
         <>
@@ -18,7 +20,6 @@ const PokemonScreenTemplate = ({ name, type, height, weight, abilities, moves }:
             <h3>{height}</h3>
             <h3>{weight}</h3>
             <h3>{abilities}</h3>
-            <h3>{moves}</h3>
         </>
     )
 };
