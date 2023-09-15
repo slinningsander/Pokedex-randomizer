@@ -1,3 +1,4 @@
+import HeartComponent from "../../components/HeartComponent/HeartComponent";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
 import "./componentTestPage.css";
 
@@ -17,12 +18,13 @@ export function ComponentTestPage() {
             <PokemonCard
               name = "Catadoze"
               type = {"Grass"}
-              isFavorite = {true}
               imgURL = "./src/assets/catadoze.jpg"
             />
           </div>
+
+          {/* Heart - favorite indicator - component */}
           <div className="componentContainer">
-            {/*Some component*/}
+            <HeartComponent/>
           </div>
       </div>
     </>
