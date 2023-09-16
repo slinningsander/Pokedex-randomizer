@@ -39,8 +39,8 @@ export function PokemonCard({
   const navigate = useNavigate();
 
   const navigateToDetails = () => {
-    sessionStorage.setItem("pokemonName", name);
-    navigate("/details");
+    
+    navigate("/details/" + name);
   };
   const detailsButton = <button className="detailsButton" onClick={navigateToDetails}>Details</button>;
 

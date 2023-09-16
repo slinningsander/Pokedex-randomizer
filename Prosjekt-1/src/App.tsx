@@ -12,7 +12,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<ComponentTestPage/>} />
-        <Route path= "/details" element={<PokemonScreenTemplate name={''} type={''} height={0} weight={0} abilities={[]} moves={[]}/>}/>
+        <Route path= "/details/:pokemon" element={<PokemonScreenTemplate/>}/>
       </Routes>
     </>
     
