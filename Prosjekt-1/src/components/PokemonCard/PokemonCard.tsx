@@ -31,7 +31,7 @@ export function PokemonCard({
     navigate("/details/" + name);
   };
   const detailsButton = <button className="detailsButton" onClick={navigateToDetails}>Details</button>;
-  const heart = <div className = "heartContainer"><HeartComponent/></div>;
+  const heart = <div className = "heartContainer"><HeartComponent name={name}/></div>;
 
  
 

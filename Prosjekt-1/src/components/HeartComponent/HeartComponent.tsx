@@ -1,13 +1,33 @@
 import { useState } from "react";
 import "./HeartComponent.css"
 
-export function HeartComponent() {
+export function HeartComponent(name) {
     const [favorite, setFavorite] = useState("notFav");
+    const [nameOfPokemon, setNameOfPokemon] = useState("");
+
+    const favoritePokemon = () => {
+      setNameOfPokemon(name)
+      const favourites: string[] = JSON.parse(localStorage.getItem("favourites") || "[]")
+      // favourites.push(nameOfPokemon)
+      // localStorage.setItem("favourites", JSON.stringify(favourites))
+      // toggleClassName()
+      if (favorite === "notFav") {
+        favourites.push(nameOfPokemon)
+        localStorage.setItem("favourites", JSON.stringify(favourites))
+        toggleClassName()
+      }
+      else if (favorite === "isFav"){
+        const index = favourites.indexOf(nameOfPokemon)
+        favourites.splice(index, 1)
+        localStorage.setItem("favourites", JSON.stringify(favourites))
+        toggleClassName()
+      }
+    }
 
     const toggleClassName = () => {favorite === "notFav" ? setFavorite("isFav") : setFavorite("notFav")}
     
     const heart = (
-    <svg className={favorite} onClick = {toggleClassName} viewBox="0 0 32 29.6">
+    <svg className={favorite} onClick = {favoritePokemon} viewBox="0 0 32 29.6">
         <filter id='inset-shadow'>
   {/* <!-- Shadow offset --> */}
   <feOffset
