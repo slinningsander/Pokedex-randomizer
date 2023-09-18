@@ -1,0 +1,22 @@
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+}
+
+.select-wrapper select:focus {
+  outline: none;
+  border-color: #007bff; /* Change the color on focus */
+}
