@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import HeartComponent from "../HeartComponent/HeartComponent";
 import "./PokemonCard.css";
 
@@ -23,6 +24,13 @@ export function PokemonCard({
 
   const nameTitle = <h1 className="nameTitle">{name}</h1>;
 
+  const navigate = useNavigate();
+
+  const navigateToDetails = () => {
+    
+    navigate("/details/" + name);
+  };
+  const detailsButton = <button className="detailsButton" onClick={navigateToDetails}>Details</button>;
   const heart = <div className = "heartContainer"><HeartComponent/></div>;
 
  
@@ -32,6 +40,7 @@ export function PokemonCard({
       {pokemonSprite}
       {typePil}
       {nameTitle}
+      {detailsButton}
       {heart}
     </div>
   );
