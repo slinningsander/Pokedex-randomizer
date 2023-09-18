@@ -1,25 +1,12 @@
-import HeartComponent from "../../components/HeartComponent/HeartComponent";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
 import "./componentTestPage.css";
 import { useEffect, useState } from "react";
 import fetchPokemon from "../../services/fetchPokemon";
 
-// import {catadoze} from "./src/assets/catadoze.jpg";
-// import "./src/assets/catadoze.jpg" as catadoze;
-//this page is ment to view and develop React components
-//eventualy it should be an overview of all components
-
-//There is a dashed border around the component container div
 export function ComponentTestPage() {
   
-
-  // const getPokemonTest = (name: number | string) => {
-  //     const data = JSON.stringify(fetchPokemon("charmander").data)
-  //     console.log(JSON.stringify(data));
-  //     sessionStorage.setItem("listOfPokemon", JSON.stringify(data));
-  // };
-
   const [pokemonArray, setPokemonArray] = useState<any[]>([]);
+  const [favoriteArray, setFavoriteArray] = useState<any[]>([]);
 
   useEffect(() => {
     const FetchPokemonData = async () => {
@@ -41,10 +28,29 @@ export function ComponentTestPage() {
       setPokemonArray(tempArray);
     };
 
+    
     FetchPokemonData();
+    
 
     
   }, []);
+
+  useEffect(() => {
+    const FetchFavoritePokemons = async () => {
+      const tempArray = [];
+      const favorites: string[] = JSON.parse(localStorage.getItem("favourites") || "[]")
+      if (favorites !== null) {
+        for (let i = 0; i < favorites.length; i++) {
+          const data = await fetchPokemon(favorites[i]);
+          tempArray.push(data);
+
+        }
+        setFavoriteArray(tempArray);
+      }
+    };
+
+    FetchFavoritePokemons();
+  }, [favoriteArray])
   
 
   return (
@@ -65,9 +71,15 @@ export function ComponentTestPage() {
             }
           </div>
 
-          {/* Heart - favorite indicator - component */}
+          {/*Favorited pokemon cards */}
           <div className="componentContainer">
-            <HeartComponent/>
+            <h1>Favorites</h1>
+            {favoriteArray.map((pokemon) => (
+              <PokemonCard
+                name={pokemon.name}
+                type={pokemon.types[0].type.name}
+                imgURL={pokemon.sprites.front_default}
+                />))}
           </div>
       </div>
     </>
