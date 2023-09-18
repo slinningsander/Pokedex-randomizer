@@ -1,19 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import HeartComponent from "../HeartComponent/HeartComponent";
 import "./PokemonCard.css";
 
 type PokemonCardProps = {
   name: string;
   type: string;
-  isFavorite: boolean;
   imgURL: string;
 };
 
 export function PokemonCard({
   name,
   type,
-  isFavorite,
   imgURL,
 }: PokemonCardProps) {
+
   const imgAltText = name + " sprite";
 
   const pokemonSprite = (
@@ -24,18 +24,6 @@ export function PokemonCard({
 
   const nameTitle = <h1 className="nameTitle">{name}</h1>;
 
-  const favoriteIndicator = (
-    <button
-      type="button"
-      className={`favoriteButton ${
-        isFavorite ? "isFavorite" : "isNotFavorite"
-      }`}
-      //this is a placeholder for a component. All apperance changes to
-      //favIndicator will be done with useState
-    >
-      favorite
-    </button>
-  );
   const navigate = useNavigate();
 
   const navigateToDetails = () => {
@@ -43,14 +31,17 @@ export function PokemonCard({
     navigate("/details/" + name);
   };
   const detailsButton = <button className="detailsButton" onClick={navigateToDetails}>Details</button>;
+  const heart = <div className = "heartContainer"><HeartComponent/></div>;
+
+ 
 
   return (
     <div className="cardContainer">
       {pokemonSprite}
       {typePil}
       {nameTitle}
-      {favoriteIndicator}
       {detailsButton}
+      {heart}
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import HeartComponent from "../../components/HeartComponent/HeartComponent";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
 import "./componentTestPage.css";
 import { useEffect, useState } from "react";
@@ -57,15 +58,16 @@ export function ComponentTestPage() {
                 
                 name={pokemon.name}
                 type={pokemon.types[0].type.name}
-                isFavorite={false}
                 imgURL={pokemon.sprites.front_default}
                 
               />
             ))
             }
           </div>
+
+          {/* Heart - favorite indicator - component */}
           <div className="componentContainer">
-            {/*Some component*/}
+            <HeartComponent/>
           </div>
       </div>
     </>
