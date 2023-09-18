@@ -1,8 +1,9 @@
-import HeartComponent from "../../components/HeartComponent/HeartComponent";
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import "./componentTestPage.css";
-import { useEffect, useState } from "react";
-import fetchPokemon from "../../services/fetchPokemon";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import PokemonCard from '../../components/PokemonCard/PokemonCard';
+import './componentTestPage.css';
+import { useEffect, useState } from 'react';
+import fetchPokemon from '../../services/fetchPokemon';
+import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
 
 // import {catadoze} from "./src/assets/catadoze.jpg";
 // import "./src/assets/catadoze.jpg" as catadoze;
@@ -11,8 +12,6 @@ import fetchPokemon from "../../services/fetchPokemon";
 
 //There is a dashed border around the component container div
 export function ComponentTestPage() {
-  
-
   // const getPokemonTest = (name: number | string) => {
   //     const data = JSON.stringify(fetchPokemon("charmander").data)
   //     console.log(JSON.stringify(data));
@@ -20,6 +19,16 @@ export function ComponentTestPage() {
   // };
 
   const [pokemonArray, setPokemonArray] = useState<any[]>([]);
+  const [filteredPokemonArray, setFilteredPokemonArray] = useState<any[]>([]);
+  const [selectedFilter, setSelectedFilter] = useState<string>(() => {
+    // Initialize selectedFilter with the value from sessionStorage, if available.
+    const savedFilter = sessionStorage.getItem('selectedFilter');
+    return savedFilter || 'all';
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('selectedFilter', selectedFilter);
+  }, [selectedFilter]);
 
   useEffect(() => {
     const FetchPokemonData = async () => {
@@ -38,37 +47,38 @@ export function ComponentTestPage() {
         };
         sessionStorage.setItem(data.name, JSON.stringify(dataToStore));
       }
+
       setPokemonArray(tempArray);
+      setFilteredPokemonArray(tempArray); // Initialize filteredPokemonArray with all Pokémon
     };
 
     FetchPokemonData();
-
-    
   }, []);
-  
+
+  useEffect(() => {
+    const filteredArray = pokemonArray.filter(filterPokemon);
+    setFilteredPokemonArray(filteredArray);
+  }, [filterPokemon, pokemonArray, selectedFilter]);
+
+  function filterPokemon(pokemon: any) {
+    if (selectedFilter === 'all') {
+      return true;
+    }
+    return pokemon.types[0].type.name === selectedFilter;
+  }
 
   return (
     <>
       <div className="page">
-
+        {/* Filter component */}
+        <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
         {/* PokemonCard component */}
-          <div className="componentContainer">
-            {pokemonArray.map((pokemon) => (
-              <PokemonCard
-                
-                name={pokemon.name}
-                type={pokemon.types[0].type.name}
-                imgURL={pokemon.sprites.front_default}
-                
-              />
-            ))
-            }
-          </div>
-
-          {/* Heart - favorite indicator - component */}
-          <div className="componentContainer">
-            <HeartComponent/>
-          </div>
+        <div className="componentContainer">
+          {filteredPokemonArray.map((pokemon) => (
+            <PokemonCard name={pokemon.name} type={pokemon.types[0].type.name} imgURL={pokemon.sprites.front_default} />
+          ))}
+          {filteredPokemonArray.length === 0 && <p>No Pokémon found</p>}
+        </div>
       </div>
     </>
   );
