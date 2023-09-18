@@ -1,23 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./HeartComponent.css"
 
-export function HeartComponent(name) {
+export function HeartComponent({ name }) {
+
     const [favorite, setFavorite] = useState("notFav");
-    const [nameOfPokemon, setNameOfPokemon] = useState("");
+    const favourites: string[] = JSON.parse(localStorage.getItem("favourites") || "[]")
+    useEffect(() => {
+      if (favourites.includes(name)) {
+        setFavorite("isFav")
+        toggleClassName()
+      }
+    }, [])
 
     const favoritePokemon = () => {
-      setNameOfPokemon(name)
       const favourites: string[] = JSON.parse(localStorage.getItem("favourites") || "[]")
-      // favourites.push(nameOfPokemon)
-      // localStorage.setItem("favourites", JSON.stringify(favourites))
-      // toggleClassName()
       if (favorite === "notFav") {
-        favourites.push(nameOfPokemon)
+        favourites.push(name)
         localStorage.setItem("favourites", JSON.stringify(favourites))
         toggleClassName()
       }
       else if (favorite === "isFav"){
-        const index = favourites.indexOf(nameOfPokemon)
+        const index = favourites.indexOf(name)
         favourites.splice(index, 1)
         localStorage.setItem("favourites", JSON.stringify(favourites))
         toggleClassName()
