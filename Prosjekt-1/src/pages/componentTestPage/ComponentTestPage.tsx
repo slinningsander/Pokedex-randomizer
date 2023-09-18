@@ -5,8 +5,16 @@ import fetchPokemon from '../../services/fetchPokemon';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
 
 export function ComponentTestPage() {
-  const [pokemonArray, setPokemonArray] = useState<any[]>([]);
-  const [filteredPokemonArray, setFilteredPokemonArray] = useState<any[]>([]);
+  type Pokemon = {
+    name: string;
+    type: string;
+    height: number;
+    sprite: string;
+    ability1: string;
+    ability2: string;
+  };
+  const [pokemonArray, setPokemonArray] = useState<Pokemon[]>([]);
+  const [filteredPokemonArray, setFilteredPokemonArray] = useState<Pokemon[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>(() => {
     // Initialize selectedFilter with the value from sessionStorage, if available.
     const savedFilter = sessionStorage.getItem('selectedFilter');
@@ -43,7 +51,7 @@ export function ComponentTestPage() {
   }, []);
 
   useEffect(() => {
-    function filterPokemon(pokemon: any) {
+    function filterPokemon(pokemon: Pokemon) {
       if (selectedFilter === 'all') {
         return true;
       }
