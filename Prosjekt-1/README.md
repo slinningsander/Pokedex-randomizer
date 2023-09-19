@@ -62,17 +62,13 @@ We tried to add TanStack Query as part of our fetching from the API, but in the 
 
 We are using PokeAPI for our application. This API let's us get information about one specific Pokemon, which we utilize. One issue we had is that we don't need all the information about each pokemon, but the API doesn't have an endpoint that is tailored to our needs. We therefore overfetch and recieve a lot of data we don't need. This is not sustainable. A solution to this is using GraphQL instead of a REST API, which let's you specify exactly what data you want to fetch. However, for this project, using a REST API was one of the requirments.
 
-## HTML Web storage API
-
-- _add docs_
-
 ### Localstorage
 
-- _add docs_
+We use local storage to store the Pokemon that are marked as favorite.
 
 ### SessionStorage
 
-- _add docs_
+We use session storage to store the 10 random Pokemon, so that when you click on details for each Pokemon, we can fetch that information from the session storage instead of making an additional API call. We also use it to store the state of the filter, so that when you reload the filter persists. It should be noted that the Pokemon will change, but that is an intentional feature because we want to generate 10 random Pokemon each time. However, when refreshed if some of the pokemon fits the filter it will show.
 
 ## Add docs on more tools ??
 
