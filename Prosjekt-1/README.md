@@ -50,9 +50,9 @@ Install Vitest:
 npm install -D vitest
 ```
 
-## React Routs
+## React Routes
 
-- _add docs_
+We use React Routes to navigate around the page. Specifically to navigate to a details page about each Pokemon. The URLs are dynamic and generated from the names of the Pokemon you click on.
 
 ## TanStack Query
 
