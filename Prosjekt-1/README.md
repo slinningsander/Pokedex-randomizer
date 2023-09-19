@@ -1,18 +1,23 @@
 # Technical documentation
-## Formater and linter
-We are using the Prettier formater and the ESLint linter. These are much used code-checking tools, which can be configured to customize linting and formating. One advantage of using these tools is the availability of documentation and ready-made linting and formating configuration provided by industry leaders. 
 
-- (*add more on these tools*)
+## Formater and linter
+
+We are using the Prettier formater and the ESLint linter. These are much used code-checking tools, which can be configured to customize linting and formating. One advantage of using these tools is the availability of documentation and ready-made linting and formating configuration provided by industry leaders.
+
+- (_add more on these tools_)
 
 For the most part we are using the default configuration generate when building a regular vite project, but we have added formating and linting on commit by adding [Husky](https://github.com/typicode/husky) to the project, which uses Git hooks to execute formating and linting pre-commit.
-- (*and docs on lint-staged??*)
+
+- (_and docs on lint-staged??_)
 
 To use this we install husky and lint-staged localy:
+
 ```
 npm install eslint prettier husky lint-staged pretty-quick --save-dev
 ```
 
 and added this to package.json:
+
 ```"husky": {
   "hooks": {
     "pre-commit": "lint-staged",
@@ -27,6 +32,7 @@ and added this to package.json:
   ]
 }
 ```
+
 [More on this.](https://dev.to/kreshby/keep-your-code-clean-with-eslint-prettier-pre-commit-and-pre-push-hooks-using-husky-lint-staged-and-pretty-quick-4fka)
 To run ESLint in terminal we use:
 
@@ -35,33 +41,48 @@ npm run lint
 ```
 
 ## Frontend code testing
+
 For frontend testing we use Vitest... (add more text)
 
 Install Vitest:
+
 ```
 npm install -D vitest
 ```
 
-## React Routs 
-- *add docs*
+## React Routs
+
+- _add docs_
+
 ## TanStack Query
-- *add docs*
+
+We tried to add TanStack Query as part of our fetching from the API, but in the end we decided to not use it. That is because of the way our application functions. We fetch from the API 10 times to retrieve all of the different Pokemon and present some of the info right away. This is so that we can filter by Pokemon-type. TanStack Query is not meant to be used in such a way ( in a loop or useEffect). It would however make sense if we didn't fetch from the API when presenting the 10 Pokemon and instead made a single API call when looking at a single Pokemon.
+
 ## PokeAPI
-- *add docs*
+
+- _add docs_
 
 ## HTML Web storage API
-- *add docs*
+
+- _add docs_
+
 ### Localstorage
-- *add docs*
+
+- _add docs_
+
 ### SessionStorage
-- *add docs*
+
+- _add docs_
 
 ## Add docs on more tools ??
 
 # Functional documentation
-- *add docs*
+
+- _add docs_
+
 ## Our webapp
-*- add domain specific docs*
+
+_- add domain specific docs_
 
 <!-- ## Expanding the ESLint configuration
 
