@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import HeartComponent from "../HeartComponent/HeartComponent";
-import "./PokemonCard.css";
+import HeartComponent from '../HeartComponent/HeartComponent';
+import './PokemonCard.css';
 
 type PokemonCardProps = {
   name: string;
@@ -8,32 +7,28 @@ type PokemonCardProps = {
   imgURL: string;
 };
 
-export function PokemonCard({
-  name,
-  type,
-  imgURL,
-}: PokemonCardProps) {
+export function PokemonCard({ name, type, imgURL }: PokemonCardProps) {
+  const imgAltText = name + ' sprite';
 
-  const imgAltText = name + " sprite";
-
-  const pokemonSprite = (
-    <img className="pokemonSprite" src={imgURL} alt={imgAltText} />
-  );
+  const pokemonSprite = <img className="pokemonSprite" src={imgURL} alt={imgAltText} />;
 
   const typePil = <span className="typePil">{type}</span>;
 
   const nameTitle = <h1 className="nameTitle">{name}</h1>;
 
-  const navigate = useNavigate();
-
   const navigateToDetails = () => {
-    
-    navigate("/details/" + name);
+    window.open('/details/' + name, '_blank');
   };
-  const detailsButton = <button className="detailsButton" onClick={navigateToDetails}>Details</button>;
-  const heart = <div className = "heartContainer"><HeartComponent/></div>;
-
- 
+  const detailsButton = (
+    <button className="detailsButton" onClick={navigateToDetails}>
+      Details
+    </button>
+  );
+  const heart = (
+    <div className="heartContainer">
+      <HeartComponent />
+    </div>
+  );
 
   return (
     <div className="cardContainer">
