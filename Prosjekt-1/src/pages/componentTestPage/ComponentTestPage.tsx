@@ -1,12 +1,13 @@
-import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import "./componentTestPage.css";
-import { useEffect, useState } from "react";
-import fetchPokemon from "../../services/fetchPokemon";
+import PokemonCard from '../../components/PokemonCard/PokemonCard';
+import './componentTestPage.css';
+import { useEffect, useState } from 'react';
+import fetchPokemon from '../../services/fetchPokemon';
 
 export function ComponentTestPage() {
-  
   const [pokemonArray, setPokemonArray] = useState<any[]>([]);
   const [favoriteArray, setFavoriteArray] = useState<any[]>([]);
+  const [refresh, setRefresh] = useState<boolean>(true);
+  const favorites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
 
   useEffect(() => {
     const FetchPokemonData = async () => {
@@ -26,61 +27,58 @@ export function ComponentTestPage() {
         sessionStorage.setItem(data.name, JSON.stringify(dataToStore));
       }
       setPokemonArray(tempArray);
+      console.log('UE1 brukes');
     };
 
-    
     FetchPokemonData();
-    
-
-    
   }, []);
 
   useEffect(() => {
     const FetchFavoritePokemons = async () => {
       const tempArray = [];
-      const favorites: string[] = JSON.parse(localStorage.getItem("favourites") || "[]")
+
       if (favorites !== null) {
         for (let i = 0; i < favorites.length; i++) {
           const data = await fetchPokemon(favorites[i]);
           tempArray.push(data);
-
         }
         setFavoriteArray(tempArray);
       }
     };
 
     FetchFavoritePokemons();
-  }, [favoriteArray])
-  
+    console.log('UE2 brukes');
+  }, [refresh]);
 
   return (
     <>
       <div className="page">
-
         {/* PokemonCard component */}
-          <div className="componentContainer">
-            {pokemonArray.map((pokemon) => (
-              <PokemonCard
-                
-                name={pokemon.name}
-                type={pokemon.types[0].type.name}
-                imgURL={pokemon.sprites.front_default}
-                
-              />
-            ))
-            }
-          </div>
+        <div className="componentContainer">
+          {pokemonArray.map((pokemon) => (
+            <PokemonCard
+              name={pokemon.name}
+              type={pokemon.types[0].type.name}
+              imgURL={pokemon.sprites.front_default}
+              setRefresh={setRefresh}
+              refresh={refresh}
+            />
+          ))}
+        </div>
 
-          {/*Favorited pokemon cards */}
-          <div className="componentContainer">
-            <h1>Favorites</h1>
-            {favoriteArray.map((pokemon) => (
-              <PokemonCard
-                name={pokemon.name}
-                type={pokemon.types[0].type.name}
-                imgURL={pokemon.sprites.front_default}
-                />))}
-          </div>
+        {/*Favorited pokemon cards */}
+        <div className="componentContainer">
+          <h1>Favorites</h1>
+          {favoriteArray.map((pokemon) => (
+            <PokemonCard
+              name={pokemon.name}
+              type={pokemon.types[0].type.name}
+              imgURL={pokemon.sprites.front_default}
+              setRefresh={setRefresh}
+              refresh={refresh}
+            />
+          ))}
+        </div>
       </div>
     </>
   );
