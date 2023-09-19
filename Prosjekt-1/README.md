@@ -60,7 +60,7 @@ We tried to add TanStack Query as part of our fetching from the API, but in the 
 
 ## PokeAPI
 
-- _add docs_
+We are using PokeAPI for our application. This API let's us get information about one specific Pokemon, which we utilize. One issue we had is that we don't need all the information about each pokemon, but the API doesn't have an endpoint that is tailored to our needs. We therefore overfetch and recieve a lot of data we don't need. This is not sustainable. A solution to this is using GraphQL instead of a REST API, which let's you specify exactly what data you want to fetch. However, for this project, using a REST API was one of the requirments.
 
 ## HTML Web storage API
 
