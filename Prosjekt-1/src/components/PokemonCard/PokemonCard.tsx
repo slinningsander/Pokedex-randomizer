@@ -17,7 +17,7 @@ export function PokemonCard({ name, type, imgURL }: PokemonCardProps) {
   const nameTitle = <h1 className="nameTitle">{name}</h1>;
 
   const navigateToDetails = () => {
-    window.open('/details/' + name, '_blank');
+    window.open('/project1/details/' + name, '_blank');
   };
   const detailsButton = (
     <button className="detailsButton" onClick={navigateToDetails}>
