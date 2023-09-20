@@ -5,9 +5,11 @@ type PokemonCardProps = {
   name: string;
   type: string;
   imgURL: string;
+  setRefresh: (refresh: boolean) => void;
+  refresh: boolean;
 };
 
-export function PokemonCard({ name, type, imgURL }: PokemonCardProps) {
+export function PokemonCard({ name, type, imgURL, setRefresh, refresh }: PokemonCardProps) {
   const imgAltText = name + ' sprite';
 
   const pokemonSprite = <img className="pokemonSprite" src={imgURL} alt={imgAltText} />;
@@ -26,7 +28,12 @@ export function PokemonCard({ name, type, imgURL }: PokemonCardProps) {
   );
   const heart = (
     <div className="heartContainer">
-      <HeartComponent />
+      <HeartComponent
+        name={name}
+        //Passes the setRefresh and refresh states to HeartComponent.
+        setRefresh={setRefresh}
+        refresh={refresh}
+      />
     </div>
   );
 
