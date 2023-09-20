@@ -3,7 +3,6 @@ import './componentTestPage.css';
 import { useEffect, useState } from 'react';
 import fetchPokemon from '../../services/fetchPokemon';
 
-
 export function ComponentTestPage() {
   const [pokemonArray, setPokemonArray] = useState<any[]>([]);
   const [refresh, setRefresh] = useState<boolean>(true);
@@ -15,6 +14,9 @@ export function ComponentTestPage() {
   window.addEventListener('storage', handleStorageChange);
 
   useEffect(() => {
+    // Fetches 10 random pokemon from the API and stores them in sessionStorage.
+    // sessionStorage is used to avoid fetching the same pokemon multiple times when going to detailsScreen.
+    // Also sets the pokemonArray state to the fetched pokemon, which is used to render the PokemonCard-components.
     const FetchPokemonData = async () => {
       const tempArray = [];
       for (let i = 1; i <= 10; i++) {
@@ -38,10 +40,7 @@ export function ComponentTestPage() {
     FetchPokemonData();
   }, []);
 
-  useEffect(() => {
-  
-  }, [refresh]);
-
+  // Opens the favorites page in a new tab.
   const navigateToFavorites = () => {
     window.open('/details/favorites', '_blank');
   };
@@ -56,6 +55,7 @@ export function ComponentTestPage() {
               name={pokemon.name}
               type={pokemon.types[0].type.name}
               imgURL={pokemon.sprites.front_default}
+              //Passes the setRefresh and refresh states to the PokemonCard component.
               setRefresh={setRefresh}
               refresh={refresh}
             />

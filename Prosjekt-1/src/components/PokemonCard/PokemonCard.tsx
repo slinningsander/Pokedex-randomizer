@@ -21,6 +21,7 @@ export function PokemonCard({ name, type, imgURL, setRefresh, refresh }: Pokemon
 
   const navigate = useNavigate();
 
+  // Navigates to the details page for the pokemon that was clicked.
   const navigateToDetails = () => {
     navigate('/details/' + name);
   };
@@ -31,7 +32,11 @@ export function PokemonCard({ name, type, imgURL, setRefresh, refresh }: Pokemon
   );
   const heart = (
     <div className="heartContainer">
-      <HeartComponent name={name} setRefresh={setRefresh} refresh={refresh} />
+      <HeartComponent
+      name={name}
+      //Passes the setRefresh and refresh states to HeartComponent.
+      setRefresh={setRefresh} 
+      refresh={refresh} />
     </div>
   );
 

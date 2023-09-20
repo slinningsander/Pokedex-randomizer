@@ -11,22 +11,23 @@ export function HeartComponent({
   refresh: boolean;
 }) {
   const [favorite, setFavorite] = useState('notFav');
+  //Gets the favorites array from localStorage.
   const favourites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
   useEffect(() => {
-    console.log(favourites);
-    console.log(name);
+    // Checks if the pokemon is favorited and sets the favorite state accordingly.
     if (favourites.includes(name)) {
       setFavorite('isFav');
     }
-  }, [favourites, refresh]);
+  }, [favourites]);
 
+  // Adds or removes the pokemon from the favorites array in localStorage.
+  // Also toggles the refresh state which causes favoritePokemonsPage to rerender.
   const favoritePokemon = () => {
     const favourites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
     if (favorite === 'notFav') {
       favourites.push(name);
       localStorage.setItem('favourites', JSON.stringify(favourites));
     } else if (favorite === 'isFav') {
-      console.log('fjerner');
       const index = favourites.indexOf(name);
       favourites.splice(index, 1);
       localStorage.setItem('favourites', JSON.stringify(favourites));
@@ -37,6 +38,7 @@ export function HeartComponent({
     setRefresh(!refresh);
   };
 
+  // Toggles the favorite state and subsequently the color of the heart.
   const toggleClassName = () => {
     favorite === 'notFav' ? setFavorite('isFav') : setFavorite('notFav');
     console.log('toggle');

@@ -10,9 +10,14 @@ const FavoritePokemonsPage = () => {
     setRefresh(!refresh);
   };
 
+  //Runs the handleStorageChange function when a storage event occurs.
+  //This is used to update the favoriteArray state when a pokemon is favorited/unfavorited.
   window.addEventListener('storage', handleStorageChange);
 
   useEffect(() => {
+
+    // Looks up the names of the favorited pokemon in the favorites array and fetches the data for each pokemon.
+    // Sets the favoriteArray state to the fetched pokemon, which is used to render the PokemonCard-components.
     const FetchFavoritePokemons = async () => {
       const tempArray = [];
 
