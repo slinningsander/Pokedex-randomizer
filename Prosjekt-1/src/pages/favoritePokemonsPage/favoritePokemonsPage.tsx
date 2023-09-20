@@ -31,7 +31,6 @@ const FavoritePokemonsPage = () => {
             height: data.height,
             sprite: data.sprites.front_default,
             ability1: data.abilities[0].ability.name,
-            ability2: data.abilities[1].ability.name,
             weight: data.weight,
             hp: data.stats[0].base_stat,
           };
