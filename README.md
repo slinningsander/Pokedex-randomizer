@@ -56,7 +56,9 @@ We use React Routes to navigate around the page. Specifically to navigate to a d
 
 ## TanStack Query
 
-We tried to add TanStack Query as part of our fetching from the API, but in the end we decided to not use it. That is because of the way our application functions. We fetch from the API 10 times to retrieve all of the different Pokemon and present some of the info right away. This is so that we can filter by Pokemon-type. TanStack Query is not meant to be used in such a way ( in a loop or useEffect). It would however make sense if we didn't fetch from the API when presenting the 10 Pokemon and instead made a single API call when looking at a single Pokemon.
+We tried to add TanStack Query as part of our fetching from the API, but in the end we decided to not use it. That is because of the way our application functions. We fetch from the API 10 times to retrieve all of the different Pokemon and present some of the info right away. This is so that we can filter by Pokemon-type. TanStack Query is not meant to be used in such a way, e.g. in a loop or another hook.
+
+It would however make sense if we didn't fetch from the API when presenting the 10 Pokemon and instead made a single API call when looking at a single Pokemon. This would perhaps be a better solution, but then we would have to hardcode the Pokemon names and types to ensure filtering. PokeAPI has an endpoint where you can fetch all Pokemon with just their names, but still we would need to make 10 additional calls to get their types.
 
 ## PokeAPI
 
