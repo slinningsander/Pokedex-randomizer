@@ -44,8 +44,7 @@ const PokemonScreenTemplate = () => {
         <img src={parsedPokemonInfo.sprite} className="img"></img>
         <div className="infoBox">
           <h4>Type: {parsedPokemonInfo.type}</h4>
-          <h4>Ability 1: {parsedPokemonInfo.ability1}</h4>
-          <h4>Ability 2: {parsedPokemonInfo.ability2}</h4>
+          <h4>Ability: {parsedPokemonInfo.ability1}</h4>
           <h4>Height: {parsedPokemonInfo.height}</h4>
           <h4>Weight: {parsedPokemonInfo.weight}</h4>
           <h4>HP: {parsedPokemonInfo.hp}</h4>
