@@ -1,12 +1,11 @@
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import './componentTestPage.css';
 import { useEffect, useState } from 'react';
-import fetchPokemon from '../../services/fetchPokemon';  
+import fetchPokemon from '../../services/fetchPokemon';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
-import  Pokemon  from '../../types/typePokemon';
+import Pokemon from '../../types/typePokemon';
 
 export function ComponentTestPage() {
-  
   const [pokemonArray, setPokemonArray] = useState<Pokemon[]>([]);
   const [filteredPokemonArray, setFilteredPokemonArray] = useState<Pokemon[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>(() => {
@@ -42,6 +41,8 @@ export function ComponentTestPage() {
           sprite: data.sprites.front_default,
           ability1: data.abilities[0].ability.name,
           ability2: data.abilities[1].ability.name,
+          weight: data.weight,
+          hp: data.stats[0].base_stat,
         };
         tempArray.push(dataToStore);
         sessionStorage.setItem(data.name, JSON.stringify(dataToStore));
@@ -76,11 +77,11 @@ export function ComponentTestPage() {
         <div className="componentContainer">
           {filteredPokemonArray.map((pokemon) => (
             <PokemonCard
-            name={pokemon.name}
-            type={pokemon.type}
-            imgURL={pokemon.sprite}
-            setRefresh={setRefresh}
-            refresh={refresh}
+              name={pokemon.name}
+              type={pokemon.type}
+              imgURL={pokemon.sprite}
+              setRefresh={setRefresh}
+              refresh={refresh}
             />
           ))}
           {filteredPokemonArray.length === 0 && <p>No Pokémon found</p>}
@@ -89,7 +90,6 @@ export function ComponentTestPage() {
       </div>
     </>
   );
-
 }
 
 export default ComponentTestPage;
