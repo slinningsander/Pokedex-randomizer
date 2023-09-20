@@ -20,7 +20,7 @@ export function HeartComponent({
     } else {
       setFavorite('notFav');
     }
-  }, [favourites]);
+  }, [favourites, name]);
 
   // Adds or removes the pokemon from the favorites array in localStorage.
   // Also toggles the refresh state which causes favoritePokemonsPage to rerender.

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import fetchPokemon from '../../services/fetchPokemon';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
+import Pokemon from '../../types/typePokemon';
 
 const FavoritePokemonsPage = () => {
   const [refresh, setRefresh] = useState<boolean>(true);
-  const [favoriteArray, setFavoriteArray] = useState<any[]>([]);
+  const [favoriteArray, setFavoriteArray] = useState<Pokemon[]>([]);
   const favorites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
   const handleStorageChange = () => {
     setRefresh(!refresh);
@@ -23,7 +24,15 @@ const FavoritePokemonsPage = () => {
       if (favorites !== null) {
         for (let i = 0; i < favorites.length; i++) {
           const data = await fetchPokemon(favorites[i]);
-          tempArray.push(data);
+          const dataToStore = {
+            name: data.name,
+            type: data.types[0].type.name,
+            height: data.height,
+            sprite: data.sprites.front_default,
+            ability1: data.abilities[0].ability.name,
+            ability2: data.abilities[1].ability.name,
+          };
+          tempArray.push(dataToStore);
         }
         if (tempArray.length !== favoriteArray.length) {
           setFavoriteArray(tempArray);
@@ -43,8 +52,8 @@ const FavoritePokemonsPage = () => {
         {favoriteArray.map((pokemon) => (
           <PokemonCard
             name={pokemon.name}
-            type={pokemon.types[0].type.name}
-            imgURL={pokemon.sprites.front_default}
+            type={pokemon.type}
+            imgURL={pokemon.sprite}
             setRefresh={setRefresh}
             refresh={refresh}
           />
