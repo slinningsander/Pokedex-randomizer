@@ -57,7 +57,7 @@ export function ComponentTestPage() {
 
   // Opens the favorites page in a new tab.
   const navigateToFavorites = () => {
-    window.open('/details/favorites', '_blank');
+    window.open('project1/details/favorites', '_blank');
   };
   useEffect(() => {
     function filterPokemon(pokemon: Pokemon) {
@@ -73,10 +73,10 @@ export function ComponentTestPage() {
   return (
     <>
       <div className="page">
-        <div className='options'>
-          <p className='optionText'>Filter by type:</p>
+        <div className="options">
+          <p className="optionText">Filter by type:</p>
           <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
-          <p className='optionText'>Go to favorites:</p>
+          <p className="optionText">Go to favorites:</p>
           <button onClick={navigateToFavorites} className="button">
             <p>Favorites</p>
           </button>
