@@ -3,11 +3,16 @@ import './componentTestPage.css';
 import { useEffect, useState } from 'react';
 import fetchPokemon from '../../services/fetchPokemon';
 
+
 export function ComponentTestPage() {
   const [pokemonArray, setPokemonArray] = useState<any[]>([]);
-  const [favoriteArray, setFavoriteArray] = useState<any[]>([]);
   const [refresh, setRefresh] = useState<boolean>(true);
-  const favorites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
+  // const favorites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
+  const handleStorageChange = () => {
+    setRefresh(!refresh);
+  };
+
+  window.addEventListener('storage', handleStorageChange);
 
   useEffect(() => {
     const FetchPokemonData = async () => {
@@ -34,21 +39,12 @@ export function ComponentTestPage() {
   }, []);
 
   useEffect(() => {
-    const FetchFavoritePokemons = async () => {
-      const tempArray = [];
-
-      if (favorites !== null) {
-        for (let i = 0; i < favorites.length; i++) {
-          const data = await fetchPokemon(favorites[i]);
-          tempArray.push(data);
-        }
-        setFavoriteArray(tempArray);
-      }
-    };
-
-    FetchFavoritePokemons();
-    console.log('UE2 brukes');
+  
   }, [refresh]);
+
+  const navigateToFavorites = () => {
+    window.open('/details/favorites', '_blank');
+  };
 
   return (
     <>
@@ -65,19 +61,8 @@ export function ComponentTestPage() {
             />
           ))}
         </div>
-
-        {/*Favorited pokemon cards */}
-        <div className="componentContainer">
-          <h1>Favorites</h1>
-          {favoriteArray.map((pokemon) => (
-            <PokemonCard
-              name={pokemon.name}
-              type={pokemon.types[0].type.name}
-              imgURL={pokemon.sprites.front_default}
-              setRefresh={setRefresh}
-              refresh={refresh}
-            />
-          ))}
+        <div>
+          <button onClick={navigateToFavorites}>Favorites</button>
         </div>
       </div>
     </>

@@ -13,7 +13,8 @@ export function HeartComponent({
   const [favorite, setFavorite] = useState('notFav');
   const favourites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
   useEffect(() => {
-    console.log('loop');
+    console.log(favourites);
+    console.log(name);
     if (favourites.includes(name)) {
       setFavorite('isFav');
     }
@@ -32,9 +33,8 @@ export function HeartComponent({
     }
 
     toggleClassName();
-    {
-      refresh ? setRefresh(false) : setRefresh(true);
-    }
+
+    setRefresh(!refresh);
   };
 
   const toggleClassName = () => {
