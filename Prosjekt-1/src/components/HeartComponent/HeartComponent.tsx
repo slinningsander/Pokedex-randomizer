@@ -17,6 +17,8 @@ export function HeartComponent({
     // Checks if the pokemon is favorited and sets the favorite state accordingly.
     if (favourites.includes(name)) {
       setFavorite('isFav');
+    } else {
+      setFavorite('notFav');
     }
   }, [favourites]);
 

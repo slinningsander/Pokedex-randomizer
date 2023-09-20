@@ -33,10 +33,11 @@ export function PokemonCard({ name, type, imgURL, setRefresh, refresh }: Pokemon
   const heart = (
     <div className="heartContainer">
       <HeartComponent
-      name={name}
-      //Passes the setRefresh and refresh states to HeartComponent.
-      setRefresh={setRefresh} 
-      refresh={refresh} />
+        name={name}
+        //Passes the setRefresh and refresh states to HeartComponent.
+        setRefresh={setRefresh}
+        refresh={refresh}
+      />
     </div>
   );
 

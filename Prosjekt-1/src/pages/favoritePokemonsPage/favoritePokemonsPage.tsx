@@ -15,7 +15,6 @@ const FavoritePokemonsPage = () => {
   window.addEventListener('storage', handleStorageChange);
 
   useEffect(() => {
-
     // Looks up the names of the favorited pokemon in the favorites array and fetches the data for each pokemon.
     // Sets the favoriteArray state to the fetched pokemon, which is used to render the PokemonCard-components.
     const FetchFavoritePokemons = async () => {
@@ -27,7 +26,7 @@ const FavoritePokemonsPage = () => {
           tempArray.push(data);
         }
         if (tempArray.length !== favoriteArray.length) {
-        setFavoriteArray(tempArray);
+          setFavoriteArray(tempArray);
         }
       }
     };
