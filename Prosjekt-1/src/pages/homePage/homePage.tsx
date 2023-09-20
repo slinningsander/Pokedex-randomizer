@@ -40,7 +40,7 @@ export function ComponentTestPage() {
           height: data.height,
           sprite: data.sprites.front_default,
           ability1: data.abilities[0].ability.name,
-          ability2: data.abilities[1].ability.name,
+          ability2: data.abilities[1].ability.name || 'None',
           weight: data.weight,
           hp: data.stats[0].base_stat,
         };
@@ -57,7 +57,7 @@ export function ComponentTestPage() {
 
   // Opens the favorites page in a new tab.
   const navigateToFavorites = () => {
-    window.open('project1/details/favorites', '_blank');
+    window.open('/project1/details/favorites', '_blank');
   };
   useEffect(() => {
     function filterPokemon(pokemon: Pokemon) {
