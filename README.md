@@ -1,3 +1,11 @@
+# Functional documentation
+
+Our application is a randomized Pokedex! It generates 10 random Pokemon and lets you favorite and filter them. You favorites are stored forever in the browser and the filter persists when the page reloads. Clicking on 'details', presents you with a single resource (Pokemon), with additional information such as height and weight. The page has a responsive design that works with both laptops and mobile devices.
+
+## Our web app
+
+Our web app is available at http://it2810-23.idi.ntnu.no/project1/
+
 # Technical documentation
 
 ## Formater and linter
@@ -77,14 +85,6 @@ We use session storage to store the 10 random Pokemon so that when you click on 
 We are using props to make it possible to reuse code. Most notably in the PokemonCard component and the pokemonCardTemplate page.
 
 State is handled through various useStates. For example for handling what Pokemon should be shown when the filter is active and what Pokemon are favorited.
-
-# Functional documentation
-
-- _add docs_
-
-## Our web app
-
-_- add domain specific docs_
 
 <!-- ## Expanding the ESLint configuration
 
