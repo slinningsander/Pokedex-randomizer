@@ -66,13 +66,17 @@ We are using PokeAPI for our application. This API let's us get information abou
 
 ### Localstorage
 
-We use local storage to store the Pokemon that are marked as favorite.
+We use local storage to store the names of the Pokemon that are marked as favorite. In our current solution we are only saving the name of the pokemon which means we have to make additonal API requests when showing your favorite Pokemon. In the future we should consider to store all the info about the favorite Pokemon in local storage, such that we minimize the API requests we have to make.
 
 ### SessionStorage
 
 We use session storage to store the 10 random Pokemon, so that when you click on details for each Pokemon, we can fetch that information from the session storage instead of making an additional API call. We also use it to store the state of the filter, so that when you reload the filter persists. It should be noted that the Pokemon will change, but that is an intentional feature because we want to generate 10 random Pokemon each time. However, when refreshed if some of the pokemon fits the filter it will show.
 
-## Add docs on more tools ??
+## React state and props
+
+We are using props to make it possible to reuse code. Most notably in the PokemonCard component and the pokemonCardTemplate page.
+
+State is handled through various useStates. For example for handling what Pokemon should be shown when the filter is active and what Pokemons are favorited.
 
 # Functional documentation
 
