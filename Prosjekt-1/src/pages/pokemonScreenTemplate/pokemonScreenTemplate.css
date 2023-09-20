@@ -38,3 +38,11 @@
     0 6px 20px 0 rgba(0, 0, 0, 0.485);
   padding: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .pokemonCard {
+    width: 65%;
+  }
+}
+  
+
