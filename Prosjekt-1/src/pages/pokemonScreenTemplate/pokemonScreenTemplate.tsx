@@ -1,6 +1,6 @@
-
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
+import './pokemonScreenTemplate.css';
 // type PokemonScreenTemplateProps = {
 //     name: string;
 //     type: string;
@@ -11,38 +11,48 @@ import { useParams } from 'react-router-dom'
 // };
 
 const PokemonScreenTemplate = () => {
+  const { pokemon } = useParams();
+  const [pokemonInfo, setPokemonInfo] = useState<string | null>('');
+  const [parsedPokemonInfo, setParsedPokemoninfo] = useState<any>('');
+  const [name, setName] = useState<string>('');
 
-    const { pokemon }  = useParams();
-    const [pokemonInfo, setPokemonInfo] = useState<string | null>("");
-    const [parsedPokemonInfo, setParsedPokemoninfo] = useState<any>("");
+  useEffect(() => {
+    setPokemonInfo(sessionStorage.getItem(pokemon || ''));
+    if (pokemonInfo !== null) {
+      try {
+        setParsedPokemoninfo(JSON.parse(pokemonInfo));
+        console.log(parsedPokemonInfo);
+        console.log(parsedPokemonInfo.abilities[0].ability.name);
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+      }
+    } else {
+      console.log('pokemonInfo is null or undefined');
+    }
+  }, [pokemonInfo]);
 
-    useEffect(() => {
-        setPokemonInfo(sessionStorage.getItem(pokemon||""));
-        console.log(pokemonInfo);
-        if (pokemonInfo !== null) {
-            try {
-              setParsedPokemoninfo(JSON.parse(pokemonInfo));
-              console.log(parsedPokemonInfo);
-              console.log(parsedPokemonInfo.abilities[0].ability.name)
-            } catch (error) {
-              console.error('Error parsing JSON:', error);
-            }
-          } else {
-            console.log('pokemonInfo is null or undefined');
-          }
-    }, [pokemonInfo]);
+  useEffect(() => {
+    if (parsedPokemonInfo !== '') {
+      setName(parsedPokemonInfo.name.charAt(0).toUpperCase() + parsedPokemonInfo.name.slice(1));
+    }
+  }, [parsedPokemonInfo]);
 
-    
-
-    return (
-        <>
-            <h1>{parsedPokemonInfo.name}</h1>
-            <img src={parsedPokemonInfo.sprite}></img>
-            <h2>{parsedPokemonInfo.type}</h2>
-            <h2>{parsedPokemonInfo.ability1}</h2>
-            <h2>{parsedPokemonInfo.ability2}</h2>
-        </>
-    )
+  return (
+    <div className="page">
+      <div className="pokemonCard">
+        <h1>{name} </h1>
+        <img src={parsedPokemonInfo.sprite} className="img"></img>
+        <div className="infoBox">
+          <h4>Type: {parsedPokemonInfo.type}</h4>
+          <h4>Ability 1: {parsedPokemonInfo.ability1}</h4>
+          <h4>Ability 2: {parsedPokemonInfo.ability2}</h4>
+          <h4>Height: {parsedPokemonInfo.height}</h4>
+          <h4>Weight: {parsedPokemonInfo.weight}</h4>
+          <h4>HP: {parsedPokemonInfo.hp}</h4>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PokemonScreenTemplate;

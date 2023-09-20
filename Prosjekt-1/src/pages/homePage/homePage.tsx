@@ -1,18 +1,11 @@
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
-import './componentTestPage.css';
+import './homePage.css';
 import { useEffect, useState } from 'react';
 import fetchPokemon from '../../services/fetchPokemon';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
+import Pokemon from '../../types/typePokemon';
 
 export function ComponentTestPage() {
-  type Pokemon = {
-    name: string;
-    type: string;
-    height: number;
-    sprite: string;
-    ability1: string;
-    ability2: string;
-  };
   const [pokemonArray, setPokemonArray] = useState<Pokemon[]>([]);
   const [filteredPokemonArray, setFilteredPokemonArray] = useState<Pokemon[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>(() => {
@@ -20,12 +13,22 @@ export function ComponentTestPage() {
     const savedFilter = sessionStorage.getItem('selectedFilter');
     return savedFilter || 'all';
   });
+  const [refresh, setRefresh] = useState<boolean>(true);
+  // const favorites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
+  const handleStorageChange = () => {
+    setRefresh(!refresh);
+  };
+
+  window.addEventListener('storage', handleStorageChange);
 
   useEffect(() => {
     sessionStorage.setItem('selectedFilter', selectedFilter);
   }, [selectedFilter]);
 
   useEffect(() => {
+    // Fetches 10 random pokemon from the API and stores them in sessionStorage.
+    // sessionStorage is used to avoid fetching the same pokemon multiple times when going to detailsScreen.
+    // Also sets the pokemonArray state to the fetched pokemon, which is used to render the PokemonCard-components.
     const FetchPokemonData = async () => {
       const tempArray = [];
       for (let i = 1; i <= 10; i++) {
@@ -38,6 +41,8 @@ export function ComponentTestPage() {
           sprite: data.sprites.front_default,
           ability1: data.abilities[0].ability.name,
           ability2: data.abilities[1].ability.name,
+          weight: data.weight,
+          hp: data.stats[0].base_stat,
         };
         tempArray.push(dataToStore);
         sessionStorage.setItem(data.name, JSON.stringify(dataToStore));
@@ -50,6 +55,10 @@ export function ComponentTestPage() {
     FetchPokemonData();
   }, []);
 
+  // Opens the favorites page in a new tab.
+  const navigateToFavorites = () => {
+    window.open('/details/favorites', '_blank');
+  };
   useEffect(() => {
     function filterPokemon(pokemon: Pokemon) {
       if (selectedFilter === 'all') {
@@ -64,10 +73,25 @@ export function ComponentTestPage() {
   return (
     <>
       <div className="page">
-        <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
+        <div className='options'>
+          <p className='optionText'>Filter by type:</p>
+          <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
+          <p className='optionText'>Go to favorites:</p>
+          <button onClick={navigateToFavorites} className="button">
+            <p>Favorites</p>
+          </button>
+        </div>
         <div className="componentContainer">
           {filteredPokemonArray.map((pokemon) => (
-            <PokemonCard name={pokemon.name} type={pokemon.type} imgURL={pokemon.sprite} />
+            <div className="component">
+              <PokemonCard
+                name={pokemon.name}
+                type={pokemon.type}
+                imgURL={pokemon.sprite}
+                setRefresh={setRefresh}
+                refresh={refresh}
+              />
+            </div>
           ))}
           {filteredPokemonArray.length === 0 && <p>No Pokémon found</p>}
         </div>
@@ -75,4 +99,5 @@ export function ComponentTestPage() {
     </>
   );
 }
+
 export default ComponentTestPage;
