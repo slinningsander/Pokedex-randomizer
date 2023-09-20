@@ -1,5 +1,5 @@
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
-import './componentTestPage.css';
+import './homePage.css';
 import { useEffect, useState } from 'react';
 import fetchPokemon from '../../services/fetchPokemon';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';

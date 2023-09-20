@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import fetchPokemon from '../../services/fetchPokemon';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Pokemon from '../../types/typePokemon';
+import '../homePage/homePage.css';
 
 const FavoritePokemonsPage = () => {
   const [refresh, setRefresh] = useState<boolean>(true);
@@ -31,6 +32,8 @@ const FavoritePokemonsPage = () => {
             sprite: data.sprites.front_default,
             ability1: data.abilities[0].ability.name,
             ability2: data.abilities[1].ability.name,
+            weight: data.weight,
+            hp: data.stats[0].base_stat,
           };
           tempArray.push(dataToStore);
         }
@@ -41,23 +44,26 @@ const FavoritePokemonsPage = () => {
     };
 
     FetchFavoritePokemons();
-    console.log('UE2 brukes');
   }, [refresh, favoriteArray, favorites]);
 
   return (
     <>
-      {/*Favorited pokemon cards */}
-      <div className="componentContainer">
+      <div className="page">
         <h1>Favorites</h1>
-        {favoriteArray.map((pokemon) => (
-          <PokemonCard
-            name={pokemon.name}
-            type={pokemon.type}
-            imgURL={pokemon.sprite}
-            setRefresh={setRefresh}
-            refresh={refresh}
-          />
-        ))}
+        {/*Favorited pokemon cards */}
+        <div className="componentContainer">
+          {favoriteArray.map((pokemon) => (
+            <div className="component">
+              <PokemonCard
+                name={pokemon.name}
+                type={pokemon.type}
+                imgURL={pokemon.sprite}
+                setRefresh={setRefresh}
+                refresh={refresh}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
