@@ -11,7 +11,7 @@ exports[`PokemonCard-test > PokemonCard snapshot 1`] = `
         <img
           alt="Picachu sprite"
           class="pokemonSprite"
-          src="/src/assets/catadoze.jpg"
+          src="/project1/src/assets/catadoze.jpg"
         />
         <span
           class="typePil"
@@ -88,7 +88,7 @@ exports[`PokemonCard-test > PokemonCard snapshot 1`] = `
       <img
         alt="Picachu sprite"
         class="pokemonSprite"
-        src="/src/assets/catadoze.jpg"
+        src="/project1/src/assets/catadoze.jpg"
       />
       <span
         class="typePil"

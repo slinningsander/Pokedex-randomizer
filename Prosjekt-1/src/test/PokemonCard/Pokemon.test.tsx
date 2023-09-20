@@ -16,10 +16,11 @@ describe('PokemonCard-test', () => {
     Object.defineProperty(window, 'localStorage', {
       value: mockLocalStorage,
     });
-    mockRefresh = false;
-    mockSetRefresh = vi.fn((newRefresh) => {
-      mockRefresh = newRefresh;
-    });
+  });
+  mockRefresh = false;
+  // eslint-disable-next-line prefer-const
+  mockSetRefresh = vi.fn((newRefresh) => {
+    mockRefresh = newRefresh;
   });
   const pokemonCard = (
     <PokemonCard name="Picachu" type="Electric" imgURL={catadoze} setRefresh={mockSetRefresh} refresh={mockRefresh} />
@@ -28,7 +29,7 @@ describe('PokemonCard-test', () => {
     render(pokemonCard);
     expect(screen.getByText('Picachu')).toBeInTheDocument();
     expect(screen.getByText('Electric')).toBeInTheDocument();
-    expect(screen.getByRole('img')).toHaveAttribute('src', '/src/assets/catadoze.jpg');
+    expect(screen.getByRole('img')).toHaveAttribute('src', '/project1/src/assets/catadoze.jpg');
   });
   it('has focus (button)', () => {
     render(pokemonCard);
