@@ -22,7 +22,7 @@ export function PokemonCard({ name, type, imgURL, setRefresh, refresh }: Pokemon
     window.open('/details/' + name, '_blank');
   };
   const detailsButton = (
-    <button className="detailsButton" onClick={navigateToDetails}>
+    <button className="detailsButton" onClick={navigateToDetails} data-testid={'test-detailsBtn'}>
       Details
     </button>
   );
