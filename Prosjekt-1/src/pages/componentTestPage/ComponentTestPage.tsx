@@ -1,12 +1,11 @@
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import './componentTestPage.css';
 import { useEffect, useState } from 'react';
-import fetchPokemon from '../../services/fetchPokemon';  
+import fetchPokemon from '../../services/fetchPokemon';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
-import  Pokemon  from '../../types/typePokemon';
+import Pokemon from '../../types/typePokemon';
 
 export function ComponentTestPage() {
-  
   const [pokemonArray, setPokemonArray] = useState<Pokemon[]>([]);
   const [filteredPokemonArray, setFilteredPokemonArray] = useState<Pokemon[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>(() => {
@@ -72,24 +71,31 @@ export function ComponentTestPage() {
   return (
     <>
       <div className="page">
-        <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
+        <div className='options'>
+          <p className='optionText'>Filter by type:</p>
+          <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
+          <p className='optionText'>Go to favorites:</p>
+          <button onClick={navigateToFavorites} className="button">
+            <p>Favorites</p>
+          </button>
+        </div>
         <div className="componentContainer">
           {filteredPokemonArray.map((pokemon) => (
-            <PokemonCard
-            name={pokemon.name}
-            type={pokemon.type}
-            imgURL={pokemon.sprite}
-            setRefresh={setRefresh}
-            refresh={refresh}
-            />
+            <div className="component">
+              <PokemonCard
+                name={pokemon.name}
+                type={pokemon.type}
+                imgURL={pokemon.sprite}
+                setRefresh={setRefresh}
+                refresh={refresh}
+              />
+            </div>
           ))}
           {filteredPokemonArray.length === 0 && <p>No Pokémon found</p>}
         </div>
-        <button onClick={navigateToFavorites}>Favorites</button>
       </div>
     </>
   );
-
 }
 
 export default ComponentTestPage;
