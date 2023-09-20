@@ -1,5 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import HeartComponent from '../../components/HeartComponent/HeartComponent';
 
 describe('HeartComponent', () => {
@@ -17,10 +16,11 @@ describe('HeartComponent', () => {
     });
 
     // Set the mock refresh functions
-    mockRefresh = false;
-    mockSetRefresh = vi.fn((newRefresh) => {
-      mockRefresh = newRefresh;
-    });
+  });
+  mockRefresh = false;
+  // eslint-disable-next-line prefer-const
+  mockSetRefresh = vi.fn((newRefresh) => {
+    mockRefresh = newRefresh;
   });
 
   it('Should be notFav', () => {
