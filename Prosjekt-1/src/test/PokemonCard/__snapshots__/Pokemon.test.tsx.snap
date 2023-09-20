@@ -34,6 +34,7 @@ exports[`PokemonCard-test > PokemonCard snapshot 1`] = `
         >
           <svg
             class="notFav"
+            data-testid="heartTestID"
             viewBox="0 0 32 29.6"
           >
             <filter
@@ -110,6 +111,7 @@ exports[`PokemonCard-test > PokemonCard snapshot 1`] = `
       >
         <svg
           class="notFav"
+          data-testid="heartTestID"
           viewBox="0 0 32 29.6"
         >
           <filter

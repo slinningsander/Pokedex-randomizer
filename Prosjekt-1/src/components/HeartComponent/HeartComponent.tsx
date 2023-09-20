@@ -47,7 +47,7 @@ export function HeartComponent({
   };
 
   const heart = (
-    <svg className={favorite} onClick={favoritePokemon} viewBox="0 0 32 29.6">
+    <svg className={favorite} onClick={favoritePokemon} viewBox="0 0 32 29.6" data-testid="heartTestID">
       <filter id="inset-shadow">
         {/* <!-- Shadow offset --> */}
         <feOffset dx="0" dy="0" />
