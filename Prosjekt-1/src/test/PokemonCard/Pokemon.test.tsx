@@ -10,4 +10,14 @@ describe('PokemonCard-test', () => {
     expect(screen.getByText('Electric')).toBeInTheDocument();
     expect(screen.getByRole('img')).toHaveAttribute('src', '/src/assets/catadoze.jpg');
   });
+  it('has focus (button)', () => {
+    render(pokemonCard);
+    const button = screen.getByTestId('test-detailsBtn');
+    button.focus();
+    expect(button).toHaveFocus();
+  });
+  it('PokemonCard snapshot', () => {
+    const result = render(pokemonCard);
+    expect(result).toMatchSnapshot();
+  });
 });
