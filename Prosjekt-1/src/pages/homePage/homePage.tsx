@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
 import Pokemon from '../../types/typePokemon';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 
 export function ComponentTestPage() {
   const [pokemonArray, setPokemonArray] = useState<Pokemon[]>(() => {
@@ -24,7 +23,6 @@ export function ComponentTestPage() {
   const handleStorageChange = () => {
     setRefresh(!refresh);
   };
-  const navigate = useNavigate();
 
   window.addEventListener('storage', handleStorageChange);
 
@@ -86,9 +84,6 @@ export function ComponentTestPage() {
     },
   });
 
-  const navigateToFavorites = () => {
-    navigate('/project1/details/favorites');
-  };
   useEffect(() => {
     function filterPokemon(pokemon: Pokemon) {
       if (selectedFilter === 'all') {
@@ -112,10 +107,6 @@ export function ComponentTestPage() {
         <div className="options">
           <p className="optionText">Filter by type:</p>
           <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
-          <p className="optionText">Go to favorites:</p>
-          <button onClick={navigateToFavorites} className="button">
-            <p>Favorites</p>
-          </button>
           <p className="optionText">Generate random Pokémon:</p>
           <button onClick={handleRandomize} className="button">
             <p>Generate</p>

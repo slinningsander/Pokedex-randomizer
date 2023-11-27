@@ -48,7 +48,7 @@ const FavoritePokemonsPage = () => {
   return (
     <>
       <div className="page">
-        <h1>Favorites</h1>
+        <h1 className="title">Favorites</h1>
         <div className="componentContainer">
           {favoriteArray.map((pokemon) => (
             <div className="component">
