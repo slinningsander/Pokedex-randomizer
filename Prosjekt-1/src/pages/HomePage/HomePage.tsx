@@ -5,7 +5,7 @@ import { FilerComponent } from '../../components/FilterComponent/FilterComponent
 import Pokemon from '../../types/typePokemon';
 import { useQuery } from 'react-query';
 
-export function ComponentTestPage() {
+export function HomePage() {
   const [pokemonArray, setPokemonArray] = useState<Pokemon[]>(() => {
     // Retrieve previously stored PokemonArray from session storage or initialize as an empty array
     const storedPokemonArray = sessionStorage.getItem('storedPokemonArray');
@@ -133,4 +133,4 @@ export function ComponentTestPage() {
   );
 }
 
-export default ComponentTestPage;
+export default HomePage;
