@@ -1,12 +1,18 @@
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import './homePage.css';
-import { useEffect, useState } from 'react';
-import fetchPokemon from '../../services/fetchPokemon';
+import { useCallback, useEffect, useState } from 'react';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
 import Pokemon from '../../types/typePokemon';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 export function ComponentTestPage() {
-  const [pokemonArray, setPokemonArray] = useState<Pokemon[]>([]);
+  const [pokemonArray, setPokemonArray] = useState<Pokemon[]>(() => {
+    // Retrieve previously stored PokemonArray from session storage or initialize as an empty array
+    const storedPokemonArray = sessionStorage.getItem('storedPokemonArray');
+    return storedPokemonArray ? JSON.parse(storedPokemonArray) : [];
+  });
+  const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
   const [filteredPokemonArray, setFilteredPokemonArray] = useState<Pokemon[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>(() => {
     // Initialize selectedFilter with the value from sessionStorage, if available.
@@ -18,6 +24,7 @@ export function ComponentTestPage() {
   const handleStorageChange = () => {
     setRefresh(!refresh);
   };
+  const navigate = useNavigate();
 
   window.addEventListener('storage', handleStorageChange);
 
@@ -25,38 +32,62 @@ export function ComponentTestPage() {
     sessionStorage.setItem('selectedFilter', selectedFilter);
   }, [selectedFilter]);
 
+  const handleRandomize = useCallback(() => {
+    const generateRandomNumber = () => Math.floor(Math.random() * 151) + 1;
+    const newRandomNumbers: number[] = [];
+    while (newRandomNumbers.length < 10) {
+      const randomNumber = generateRandomNumber();
+      if (!randomNumbers.includes(randomNumber)) {
+        newRandomNumbers.push(randomNumber);
+      }
+    }
+    setRandomNumbers(newRandomNumbers);
+  }, [randomNumbers]); // Include randomNumbers in the dependency array for useCallback
+
   useEffect(() => {
-    // Fetches 10 random pokemon from the API and stores them in sessionStorage.
-    // sessionStorage is used to avoid fetching the same pokemon multiple times when going to detailsScreen.
-    // Also sets the pokemonArray state to the fetched pokemon, which is used to render the PokemonCard-components.
-    const FetchPokemonData = async () => {
-      const tempArray = [];
-      for (let i = 1; i <= 10; i++) {
-        const pokemonName = Math.floor(Math.random() * 151) + 1;
-        const data = await fetchPokemon(pokemonName);
+    if (pokemonArray.length === 0) {
+      handleRandomize();
+    }
+  }, [pokemonArray, handleRandomize]); // Trigger the initial fetch when pokemonArray is empty
+
+  const fetchPokemonFromUrl = async (url: string) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+  };
+
+  const getRandomPokemon = async () => {
+    const promises = randomNumbers.map((number) => fetchPokemonFromUrl(`https://pokeapi.co/api/v2/pokemon/${number}`));
+    return Promise.all(promises);
+  };
+
+  // Get pokemon using useQuery and store them in pokemonArray
+  const { refetch: refetchPokemon } = useQuery('pokemon', getRandomPokemon, {
+    enabled: !!randomNumbers.length,
+    onSuccess: (data) => {
+      const tempArray: Pokemon[] = [];
+      data.forEach((pokemon) => {
         const dataToStore = {
-          name: data.name,
-          type: data.types[0].type.name,
-          height: data.height,
-          sprite: data.sprites.front_default,
-          ability1: data.abilities[0].ability.name,
-          weight: data.weight,
-          hp: data.stats[0].base_stat,
+          name: pokemon.name,
+          type: pokemon.types[0].type.name,
+          height: pokemon.height,
+          sprite: pokemon.sprites.front_default,
+          ability1: pokemon.abilities[0].ability.name,
+          weight: pokemon.weight,
+          hp: pokemon.stats[0].base_stat,
         };
         tempArray.push(dataToStore);
-        sessionStorage.setItem(data.name, JSON.stringify(dataToStore));
-      }
-
+        sessionStorage.setItem(pokemon.name, JSON.stringify(dataToStore));
+      });
       setPokemonArray(tempArray);
       setFilteredPokemonArray(tempArray); // Initialize filteredPokemonArray with all Pokémon
-    };
 
-    FetchPokemonData();
-  }, []);
+      sessionStorage.setItem('storedPokemonArray', JSON.stringify(tempArray));
+    },
+  });
 
-  // Opens the favorites page in a new tab.
   const navigateToFavorites = () => {
-    window.open('/project1/details/favorites', '_blank');
+    navigate('/project1/details/favorites');
   };
   useEffect(() => {
     function filterPokemon(pokemon: Pokemon) {
@@ -69,6 +100,12 @@ export function ComponentTestPage() {
     setFilteredPokemonArray(filteredArray);
   }, [pokemonArray, selectedFilter]);
 
+  useEffect(() => {
+    if (randomNumbers.length > 0) {
+      refetchPokemon();
+    }
+  }, [randomNumbers, refetchPokemon]);
+
   return (
     <>
       <div className="page">
@@ -78,6 +115,10 @@ export function ComponentTestPage() {
           <p className="optionText">Go to favorites:</p>
           <button onClick={navigateToFavorites} className="button">
             <p>Favorites</p>
+          </button>
+          <p className="optionText">Generate random Pokémon:</p>
+          <button onClick={handleRandomize} className="button">
+            <p>Generate</p>
           </button>
         </div>
         <div className="componentContainer">
