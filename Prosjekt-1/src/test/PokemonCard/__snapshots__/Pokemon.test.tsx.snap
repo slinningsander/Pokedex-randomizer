@@ -1,212 +1,81 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`PokemonCard-test > PokemonCard snapshot 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="cardContainer"
-      >
-        <img
-          alt="Picachu sprite"
-          class="pokemonSprite"
-          src="/project1/src/assets/catadoze.jpg"
-        />
-        <span
-          class="typePil"
-        >
-          Electric
-        </span>
-        <h1
-          class="nameTitle"
-        >
-          Picachu
-        </h1>
-        <button
-          class="detailsButton"
-          data-testid="test-detailsBtn"
-        >
-          Details
-        </button>
-        <div
-          class="heartContainer"
-        >
-          <svg
-            class="notFav"
-            data-testid="heartTestID"
-            viewBox="0 0 32 29.6"
-          >
-            <filter
-              id="inset-shadow"
-            >
-              <feoffset
-                dx="0"
-                dy="0"
-              />
-              <fegaussianblur
-                result="offset-blur"
-                stdDeviation="1"
-              />
-              <fecomposite
-                in="SourceGraphic"
-                in2="offset-blur"
-                operator="out"
-                result="inverse"
-              />
-              <feflood
-                flood-color="black"
-                flood-opacity=".95"
-                result="color"
-              />
-              <fecomposite
-                in="color"
-                in2="inverse"
-                operator="in"
-                result="shadow"
-              />
-              <fecomposite
-                in="shadow"
-                in2="SourceGraphic"
-                operator="over"
-              />
-            </filter>
-            <path
-              d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,
-    11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,
-    21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="cardContainer"
+<DocumentFragment>
+   
+  <div
+    class="cardContainer"
+  >
+    <img
+      alt="Pikachu sprite"
+      class="pokemonSprite"
+      src="/project1/src/assets/catadoze.jpg"
+    />
+    <span
+      class="typePil"
     >
-      <img
-        alt="Picachu sprite"
-        class="pokemonSprite"
-        src="/project1/src/assets/catadoze.jpg"
-      />
-      <span
-        class="typePil"
+      Electric
+    </span>
+    <h1
+      class="nameTitle"
+    >
+      Pikachu
+    </h1>
+    <button
+      class="detailsButton"
+      data-testid="test-detailsBtn"
+    >
+      Details
+    </button>
+    <div
+      class="heartContainer"
+    >
+      <svg
+        class="notFav"
+        data-testid="heartTestID"
+        viewBox="0 0 32 29.6"
       >
-        Electric
-      </span>
-      <h1
-        class="nameTitle"
-      >
-        Picachu
-      </h1>
-      <button
-        class="detailsButton"
-        data-testid="test-detailsBtn"
-      >
-        Details
-      </button>
-      <div
-        class="heartContainer"
-      >
-        <svg
-          class="notFav"
-          data-testid="heartTestID"
-          viewBox="0 0 32 29.6"
+        <filter
+          id="inset-shadow"
         >
-          <filter
-            id="inset-shadow"
-          >
-            <feoffset
-              dx="0"
-              dy="0"
-            />
-            <fegaussianblur
-              result="offset-blur"
-              stdDeviation="1"
-            />
-            <fecomposite
-              in="SourceGraphic"
-              in2="offset-blur"
-              operator="out"
-              result="inverse"
-            />
-            <feflood
-              flood-color="black"
-              flood-opacity=".95"
-              result="color"
-            />
-            <fecomposite
-              in="color"
-              in2="inverse"
-              operator="in"
-              result="shadow"
-            />
-            <fecomposite
-              in="shadow"
-              in2="SourceGraphic"
-              operator="over"
-            />
-          </filter>
-          <path
-            d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,
+          <feoffset
+            dx="0"
+            dy="0"
+          />
+          <fegaussianblur
+            result="offset-blur"
+            stdDeviation="1"
+          />
+          <fecomposite
+            in="SourceGraphic"
+            in2="offset-blur"
+            operator="out"
+            result="inverse"
+          />
+          <feflood
+            flood-color="black"
+            flood-opacity=".95"
+            result="color"
+          />
+          <fecomposite
+            in="color"
+            in2="inverse"
+            operator="in"
+            result="shadow"
+          />
+          <fecomposite
+            in="shadow"
+            in2="SourceGraphic"
+            operator="over"
+          />
+        </filter>
+        <path
+          d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,
     11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,
     21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
-          />
-        </svg>
-      </div>
+        />
+      </svg>
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </div>
+</DocumentFragment>
 `;

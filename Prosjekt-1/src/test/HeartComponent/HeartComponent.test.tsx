@@ -28,23 +28,4 @@ describe('HeartComponent', () => {
     const heart = screen.getByTestId('heartTestID');
     expect(heart).toHaveClass('notFav');
   });
-
-  // Tried to change state by clicking, but can't get the test to pass
-
-  //   it('Should change state', async () => {
-  //     render(<HeartComponent name="ditto" refresh={mockRefresh} setRefresh={mockSetRefresh} />);
-
-  //     const heart = screen.getByTestId('heartTestID');
-  //     expect(heart).toHaveClass('notFav');
-
-  //     userEvent.click(heart);
-  //     await waitFor(() => {
-  //       expect(heart).toHaveClass('isFav');
-  //     });
-
-  //     userEvent.click(heart);
-  //     await waitFor(() => {
-  //       expect(heart).toHaveClass('notFav');
-  //     });
-  //   });
 });
