@@ -124,7 +124,9 @@ export function ComponentTestPage() {
               />
             </div>
           ))}
-          {filteredPokemonArray.length === 0 && <p>No Pokémon found</p>}
+          {filteredPokemonArray.length === 0 && (
+            <p>No Pokémon found. Try changing the filter or generate new Pokemón.</p>
+          )}
         </div>
       </div>
     </>
