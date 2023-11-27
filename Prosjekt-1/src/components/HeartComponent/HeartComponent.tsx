@@ -59,7 +59,7 @@ export function HeartComponent({
         <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
 
         {/* <!-- Cut color inside shadow --> */}
-        <feFlood flood-color="black" flood-opacity=".95" result="color" />
+        <feFlood floodColor="black" floodOpacity=".95" result="color" />
         <feComposite operator="in" in="color" in2="inverse" result="shadow" />
 
         {/* <!-- Placing shadow over element --> */}

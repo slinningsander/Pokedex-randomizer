@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import HeartComponent from '../HeartComponent/HeartComponent';
 import './PokemonCard.css';
 
@@ -17,10 +18,11 @@ export function PokemonCard({ name, type, imgURL, setRefresh, refresh }: Pokemon
   const typePil = <span className="typePil">{type}</span>;
 
   const nameTitle = <h1 className="nameTitle">{name}</h1>;
-
+  const navigate = useNavigate();
   const navigateToDetails = () => {
-    window.open('/project1/details/' + name, '_blank');
+    navigate('/project1/details/' + name);
   };
+
   const detailsButton = (
     <button className="detailsButton" onClick={navigateToDetails} data-testid={'test-detailsBtn'}>
       Details

@@ -1,23 +1,16 @@
-.notFav{
-    fill: #fdf4e6;
-    height: 35px;
-    /* filter: drop-shadow(2px 2px 2px rgb(0 0 0 / 0.4)); */
-    filter: url(#inset-shadow);
-    transition: all 200ms ease-in-out;
-
+.notFav {
+  fill: #fdf4e6;
+  height: 35px;
+  transition: all 200ms ease-in-out;
 }
 
-.isFav{
-    fill: rgb(244, 80, 80);
-    height: 35px;
-    /* filter: url(#inset-shadow) */
-    filter: url(#inset-shadow);
-    transition: all 200ms ease-in-out;
-
+.isFav {
+  fill: rgb(244, 80, 80);
+  height: 35px;
+  transition: all 200ms ease-in-out;
 }
 
-.notFav:hover, .isFav:hover{
-    transform: scale(1.05);
-    filter: drop-shadow(2px 2px 2px rgb(0 0 0 / 0.4));
+.notFav:hover,
+.isFav:hover {
+  transform: scale(1.1);
 }
-
