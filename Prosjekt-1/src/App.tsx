@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/homePage/homePage';
-import PokemonScreenTemplate from './pages/pokemonScreenTemplate/pokemonScreenTemplate';
-import FavoritePokemonsPage from './pages/favoritePokemonsPage/favoritePokemonsPage';
+import HomePage from './pages/HomePage/HomePage';
+import PokemonScreenTemplate from './pages/PokemonScreenTemplate/pokemonScreenTemplate';
+import FavoritePokemonsPage from './pages/FavoritePokemonsPage/FavoritePokemonsPage';
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
