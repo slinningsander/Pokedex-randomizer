@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
-import PokemonScreenTemplate from './pages/PokemonScreenTemplate/pokemonScreenTemplate';
+import PokemonScreenTemplate from './pages/PokemonScreenTemplate/PokemonScreenTemplate';
 import FavoritePokemonsPage from './pages/FavoritePokemonsPage/FavoritePokemonsPage';
 import Navbar from './components/Navbar/Navbar';
 
