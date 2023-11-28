@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { FilerComponent } from '../../components/FilterComponent/FilterComponent';
 import Pokemon from '../../types/typePokemon';
 import { useQuery } from 'react-query';
+import DD0 from '../../assets/DD0.gif';
 
 export function HomePage() {
   const [pokemonArray, setPokemonArray] = useState<Pokemon[]>(() => {
@@ -19,10 +20,15 @@ export function HomePage() {
     return savedFilter || 'all';
   });
   const [refresh, setRefresh] = useState<boolean>(true);
-  // const favorites: string[] = JSON.parse(localStorage.getItem('favourites') || '[]');
   const handleStorageChange = () => {
     setRefresh(!refresh);
   };
+  const [uniqueTypes, setUniqueTypes] = useState<string[]>([]);
+
+  useEffect(() => {
+    const types = [...new Set(pokemonArray.map((pokemon) => pokemon.type))];
+    setUniqueTypes(types);
+  }, [pokemonArray]);
 
   window.addEventListener('storage', handleStorageChange);
 
@@ -40,6 +46,7 @@ export function HomePage() {
       }
     }
     setRandomNumbers(newRandomNumbers);
+    setSelectedFilter('all');
   }, [randomNumbers]); // Include randomNumbers in the dependency array for useCallback
 
   useEffect(() => {
@@ -60,7 +67,7 @@ export function HomePage() {
   };
 
   // Get pokemon using useQuery and store them in pokemonArray
-  const { refetch: refetchPokemon } = useQuery('pokemon', getRandomPokemon, {
+  const { refetch: refetchPokemon, isFetching } = useQuery('pokemon', getRandomPokemon, {
     enabled: !!randomNumbers.length,
     onSuccess: (data) => {
       const tempArray: Pokemon[] = [];
@@ -106,26 +113,35 @@ export function HomePage() {
       <div className="page">
         <div className="options">
           <p className="optionText">Filter by type:</p>
-          <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} />
+          <FilerComponent selectedValue={selectedFilter} onFilterChange={setSelectedFilter} types={uniqueTypes} />
           <p className="optionText">Generate random Pokémon:</p>
           <button onClick={handleRandomize} className="button">
             <p>Generate</p>
           </button>
         </div>
         <div className="componentContainer">
-          {filteredPokemonArray.map((pokemon) => (
-            <div className="component">
-              <PokemonCard
-                name={pokemon.name}
-                type={pokemon.type}
-                imgURL={pokemon.sprite}
-                setRefresh={setRefresh}
-                refresh={refresh}
-              />
+          {isFetching ? (
+            <div className="loadingBox">
+              <img src={DD0} alt="Loading..." height={60} width={60} />
+              <p>Generating new Pokémon...</p>
             </div>
-          ))}
-          {filteredPokemonArray.length === 0 && (
-            <p>No Pokémon found. Try changing the filter or generate new Pokemón.</p>
+          ) : (
+            <>
+              {filteredPokemonArray.map((pokemon) => (
+                <div className="component">
+                  <PokemonCard
+                    name={pokemon.name}
+                    type={pokemon.type}
+                    imgURL={pokemon.sprite}
+                    setRefresh={setRefresh}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {filteredPokemonArray.length === 0 && (
+                <p>No Pokémon found. Try changing the filter or generate new Pokemón.</p>
+              )}
+            </>
           )}
         </div>
       </div>
