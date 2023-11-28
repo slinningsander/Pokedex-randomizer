@@ -6,8 +6,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   background-image: radial-gradient(rgb(62, 83, 103), rgb(41, 63, 85));
+}
+
+.loadingBox {
+  color: white;
+  flex-direction: column;
+}
+
+.title {
+  color: white;
 }
 
 .componentContainer {
@@ -39,6 +48,7 @@
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   font-size: 1.5rem;
+  color: white;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .button {
@@ -85,5 +95,3 @@ button:hover {
     font-size: 0.8rem;
   }
 }
-  
-

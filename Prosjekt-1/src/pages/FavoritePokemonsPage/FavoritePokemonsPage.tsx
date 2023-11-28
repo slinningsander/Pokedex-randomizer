@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useQueries } from 'react-query';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Pokemon from '../../types/typePokemon';
+import DD0 from '../../assets/DD0.gif';
 import '../homePage/homePage.css';
 
 const fetchPokemon = (pokemonName: number | string) => {
@@ -45,23 +46,34 @@ const FavoritePokemonsPage = () => {
     }
   }, [results, favoriteArray]);
 
+  const isLoading = results.some((result) => result.isLoading);
+
   return (
     <>
       <div className="page">
         <h1 className="title">Favorites</h1>
         <div className="componentContainer">
-          {favoriteArray.map((pokemon) => (
-            <div className="component">
-              <PokemonCard
-                name={pokemon.name}
-                type={pokemon.type}
-                imgURL={pokemon.sprite}
-                setRefresh={setRefresh}
-                refresh={refresh}
-              />
+          {isLoading ? (
+            <div className="loadingBox">
+              <img src={DD0} alt="Loading..." height={60} width={60} />
+              <p>Loading your favorites...</p>
             </div>
-          ))}
-          {favoriteArray.length === 0 && <p>You don't have any favorites yet</p>}
+          ) : (
+            <>
+              {favoriteArray.map((pokemon) => (
+                <div className="component">
+                  <PokemonCard
+                    name={pokemon.name}
+                    type={pokemon.type}
+                    imgURL={pokemon.sprite}
+                    setRefresh={setRefresh}
+                    refresh={refresh}
+                  />
+                </div>
+              ))}
+              {favoriteArray.length === 0 && <p>You don't have any favorites yet</p>}
+            </>
+          )}
         </div>
       </div>
     </>
