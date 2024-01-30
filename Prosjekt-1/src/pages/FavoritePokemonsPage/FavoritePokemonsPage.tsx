@@ -3,7 +3,7 @@ import { useQueries } from 'react-query';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Pokemon from '../../types/typePokemon';
 import DD0 from '../../assets/DD0.gif';
-import '../homePage/homePage.css';
+import '../HomePage/HomePage.css';
 
 const fetchPokemon = (pokemonName: number | string) => {
   return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((res) => res.json());
