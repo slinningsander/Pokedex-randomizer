@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './pokemonScreenTemplate.css';
+import './PokemonScreenTemplate.css';
 
 interface PokemonInfo {
   name: string;
