@@ -10,10 +10,10 @@ const Navbar = () => {
 
   return (
     <ul className="navbar">
-      <li className="nav-item" onClick={() => handleNavigation('/project1')}>
+      <li className="nav-item" onClick={() => handleNavigation('/')}>
         <p>Home</p>
       </li>
-      <li className="nav-item" onClick={() => handleNavigation('/project1/details/favorites')}>
+      <li className="nav-item" onClick={() => handleNavigation('/details/favorites')}>
         <p>Favorites</p>
       </li>
     </ul>

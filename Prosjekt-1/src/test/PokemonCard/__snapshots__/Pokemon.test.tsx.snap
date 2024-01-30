@@ -9,7 +9,7 @@ exports[`PokemonCard-test > PokemonCard snapshot 1`] = `
     <img
       alt="Pikachu sprite"
       class="pokemonSprite"
-      src="/project1/src/assets/catadoze.jpg"
+      src="/src/assets/catadoze.jpg"
     />
     <span
       class="typePil"

@@ -10,9 +10,9 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/project1" element={<HomePage />} />
-        <Route path="/project1/details/:pokemon" element={<PokemonScreenTemplate />} />
-        <Route path="/project1/details/favorites" element={<FavoritePokemonsPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/details/:pokemon" element={<PokemonScreenTemplate />} />
+        <Route path="/details/favorites" element={<FavoritePokemonsPage />} />
       </Routes>
     </>
   );

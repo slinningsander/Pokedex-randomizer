@@ -22,9 +22,9 @@ describe('Navbar component', () => {
     const { getByText } = render(<Navbar />);
 
     fireEvent.click(getByText('Home'));
-    expect(mockNavigate).toHaveBeenCalledWith('/project1');
+    expect(mockNavigate).toHaveBeenCalledWith('/');
 
     fireEvent.click(getByText('Favorites'));
-    expect(mockNavigate).toHaveBeenCalledWith('/project1/details/favorites');
+    expect(mockNavigate).toHaveBeenCalledWith('/details/favorites');
   });
 });

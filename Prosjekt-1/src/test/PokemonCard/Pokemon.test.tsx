@@ -40,7 +40,7 @@ describe('PokemonCard-test', () => {
     render(pokemonCard);
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
     expect(screen.getByText('Electric')).toBeInTheDocument();
-    expect(screen.getByRole('img')).toHaveAttribute('src', '/project1/src/assets/catadoze.jpg');
+    expect(screen.getByRole('img')).toHaveAttribute('src', '/src/assets/catadoze.jpg');
   });
 
   it('has focus (button)', () => {

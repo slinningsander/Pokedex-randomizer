@@ -4,7 +4,7 @@ This is the first project for the course Web Development - IT2810. Our applicati
 
 ## Our web app
 
-Our web app is available at http://it2810-23.idi.ntnu.no/project1/
+Our web app is available at http://it2810-23.idi.ntnu.no/
 
 # Technical documentation
 

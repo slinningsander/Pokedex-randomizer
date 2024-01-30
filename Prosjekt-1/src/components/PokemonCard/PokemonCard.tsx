@@ -20,7 +20,7 @@ export function PokemonCard({ name, type, imgURL, setRefresh, refresh }: Pokemon
   const nameTitle = <h1 className="nameTitle">{name}</h1>;
   const navigate = useNavigate();
   const navigateToDetails = () => {
-    navigate('/project1/details/' + name);
+    navigate('/details/' + name);
   };
 
   const detailsButton = (
