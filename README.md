@@ -1,6 +1,6 @@
-# Functional documentation
+# Pokedex Randomizer
 
-Our application is a randomized Pokedex! It generates 10 random Pokemon and lets you favorite and filter them. You favorites are stored forever in the browser and the filter and generated pokemon persists when the page reloads. Clicking on 'details', presents you with a single resource (Pokemon), with additional information such as height and weight. The page has a responsive design that works with both laptops and mobile devices.
+This is the first project for the course Web Development - IT2810. Our application is a randomized Pokedex! It generates 10 random Pokemon and lets you favorite and filter them. You favorites are stored forever in the browser and the filter and generated pokemon persists when the page reloads. Clicking on 'details', presents you with a single resource (Pokemon), with additional information such as height and weight. The page has a responsive design that works with both laptops and mobile devices.
 
 ## Our web app
 
